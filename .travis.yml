@@ -1,0 +1,13 @@
+language: "java"
+
+script: "mvn -B clean install -Pqulice"
+
+jdk:
+    - "oraclejdk8"
+
+cache:
+  directories:
+    - "$HOME/.m2"
+
+after_success:
+    - "bash <(curl -s https://codecov.io/bash)"
