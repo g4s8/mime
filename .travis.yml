@@ -13,7 +13,7 @@ after_success:
     - "bash <(curl -s https://codecov.io/bash)"
 before_deploy:
     - "mkdir .bintray"
-    - "wget -O .bintray/settnigs.xml https://gist.githubusercontent.com/g4s8/9b58037668e8dbbd86585cddb7ddf9b8/raw/b5c2f16c7fe5e4161ec7555628b69d14222ffbf3/bintray-settings.xml"
+    - "wget -O .bintray/settings.xml https://gist.githubusercontent.com/g4s8/9b58037668e8dbbd86585cddb7ddf9b8/raw/b5c2f16c7fe5e4161ec7555628b69d14222ffbf3/bintray-settings.xml"
 
 deploy:
   - provider: "script"
