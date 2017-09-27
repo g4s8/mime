@@ -20,6 +20,6 @@ before_deploy:
 deploy:
   - provider: "script"
     skip_cleanup: true
-    script: "mvn deploy --settings .bintray/settings.xml"
+    script: "mvn deploy -e -X --settings .bintray/settings.xml"
     on:
         tags: true
