@@ -12,3 +12,6 @@ merge:
     mvn clean install -Pqulice --errors
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null
+release:
+  script: |
+    echo $tag
