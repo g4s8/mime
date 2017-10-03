@@ -18,8 +18,6 @@ package com.g4s8.mime;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -84,20 +82,22 @@ public final class MimeTypeOf implements MimeType {
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Map<String, List<String>> params() throws IOException {
+    public Map<String, String> params() throws IOException {
         final Matcher match = this.matcher();
         final Matcher param = MimeTypeOf.PTN_PARAM.matcher(this.src);
-        final Map<String, List<String>> map = new HashMap<>(1);
+        final Map<String, String> map = new HashMap<>(1);
         for (int id = match.end(); id < this.src.length(); id = param.end()) {
             param.region(id, this.src.length());
             if (!param.lookingAt()) {
                 throw new IOException("Invalid mime-type params format");
             }
             final String name = param.group(1);
-            if (!map.containsKey(name)) {
-                map.put(name, new LinkedList<String>());
+            if (map.containsKey(name)) {
+                throw new IOException(
+                    String.format("Parameter %s may only exist once.", name)
+                );
             }
-            map.get(name).add(MimeTypeOf.paramValue(param));
+            map.put(name, MimeTypeOf.paramValue(param));
         }
         return map;
     }

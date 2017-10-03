@@ -17,7 +17,6 @@
 package com.g4s8.mime;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,5 +47,5 @@ public interface MimeType {
      * @return Parameter map
      * @throws IOException If failed to read
      */
-    Map<String, List<String>> params() throws IOException;
+    Map<String, String> params() throws IOException;
 }

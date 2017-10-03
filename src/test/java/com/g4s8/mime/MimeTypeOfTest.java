@@ -57,10 +57,15 @@ public final class MimeTypeOfTest {
             "Can't read params",
             new MimeTypeOf("multipart/byteranges; boundary=3d6b6a416f9b5")
                 .params()
-                .get("boundary")
-                .get(0),
+                .get("boundary"),
             Matchers.equalTo("3d6b6a416f9b5")
         );
+    }
+
+    @Test(expected = IOException.class)
+    public void sameParamTwice() throws IOException {
+        new MimeTypeOf("multipart/byteranges; a=1; a=1")
+            .params();
     }
 
     @Test

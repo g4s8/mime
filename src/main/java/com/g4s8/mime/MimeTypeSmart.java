@@ -17,7 +17,6 @@
 package com.g4s8.mime;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,7 +59,7 @@ public final class MimeTypeSmart implements MimeType {
     }
 
     @Override
-    public Map<String, List<String>> params() throws IOException {
+    public Map<String, String> params() throws IOException {
         return this.orig.params();
     }
 
@@ -70,18 +69,15 @@ public final class MimeTypeSmart implements MimeType {
      * @throws IOException If not found or invalid.
      */
     public String charset() throws IOException {
-        final Map<String, List<String>> params = this.params();
+        final Map<String, String> params = this.params();
         if (!params.containsKey(MimeTypeSmart.PARAM_CHARSET)) {
             throw new IOException("Charset is not provided");
         }
-        final List<String> charsets = params.get(MimeTypeSmart.PARAM_CHARSET);
-        if (charsets.isEmpty()) {
-            throw new IOException("Empty charset param");
+        final String charset = params.get(MimeTypeSmart.PARAM_CHARSET);
+        if (charset == null || "".equals(charset)) {
+            throw new IOException("The charset parameter is not set");
         }
-        if (charsets.size() > 1) {
-            throw new IOException("More than one charset");
-        }
-        return charsets.get(0);
+        return charset;
     }
 
     @Override
