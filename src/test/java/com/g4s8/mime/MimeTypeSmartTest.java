@@ -49,6 +49,13 @@ public final class MimeTypeSmartTest {
         );
     }
 
+    @Test(expected = IOException.class)
+    public void testNoCharset() throws IOException {
+        new MimeTypeSmart(
+            new MimeTypeOf("text/html")
+        ).charset();
+    }
+
     @Test
     public void asString() {
         final String src = "application/octet-stream";
