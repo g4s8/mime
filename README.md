@@ -2,6 +2,8 @@
 
 [![DevOps By Rultor.com](http://www.rultor.com/b/g4s8/mime)](http://www.rultor.com/p/g4s8/mime)
 
+ [![Bintray](https://api.bintray.com/packages/g4s8/maven-android/com.g4s8.mime/images/download.svg)](https://bintray.com/g4s8/maven-android/com.g4s8.mime/_latestVersion)
+
 [![Build Status](https://img.shields.io/travis/g4s8/mime.svg?style=flat-square)](https://travis-ci.org/g4s8/mime)
 [![Build status](https://ci.appveyor.com/api/projects/status/9mk57am5d3r70geo?svg=true)](https://ci.appveyor.com/project/g4s8/mime)
 [![PDD status](http://www.0pdd.com/svg?name=g4s8/mime)](http://www.0pdd.com/p?name=g4s8/mime)
