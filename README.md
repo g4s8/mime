@@ -48,3 +48,6 @@ MatcherAssert.assertThat(
     new HmMimeHasSubType("bmp")
 );
 ```
+
+## Contributing
+If you are interested in contributing please refer to [CONTRIBUTING.md](CONTRIBUTING.md)
