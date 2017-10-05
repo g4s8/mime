@@ -23,6 +23,7 @@
  */
 package com.g4s8.mime;
 
+import com.g4s8.mime.test.HmMimeHasParam;
 import com.g4s8.mime.test.HmMimeHasSubType;
 import com.g4s8.mime.test.HmMimeHasType;
 import java.io.IOException;
@@ -59,13 +60,23 @@ public final class MimeTypeOfTest {
     }
 
     @Test
-    public void param() throws IOException {
+    public void paramWithString() throws IOException {
         MatcherAssert.assertThat(
-            "Can't read params",
-            new MimeTypeOf("multipart/byteranges; boundary=3d6b6a416f9b5")
-                .params()
-                .get("boundary"),
-            Matchers.equalTo("3d6b6a416f9b5")
+            "Param doesn't match expected string.",
+            new MimeTypeOf("multipart/byteranges; boundary=3d6b6a416f9b5"),
+            new HmMimeHasParam("boundary", "3d6b6a416f9b5")
+        );
+    }
+
+    @Test
+    public void paramWithMatcher() throws IOException {
+        MatcherAssert.assertThat(
+            "Param doesn't match expected matcher.",
+            new MimeTypeOf("text/xml; encoding=utf-8"),
+            new HmMimeHasParam(
+                "encoding",
+                Matchers.equalToIgnoringCase("UtF-8")
+            )
         );
     }
 

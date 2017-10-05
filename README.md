@@ -49,6 +49,12 @@ MatcherAssert.assertThat(
     new MimeTypeOf("image/bmp"),
     new HmMimeHasSubType("bmp")
 );
+
+// verify parameter
+MatcherAssert.assertThat(
+    new MimeTypeOf("image/bmp; charset=utf-8"),
+    new HmMimeHasParameter("charset", "utf-8")
+);
 ```
 
 ## Contributing
