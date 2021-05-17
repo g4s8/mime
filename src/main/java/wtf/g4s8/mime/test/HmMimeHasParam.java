@@ -2,9 +2,9 @@
  * The MIT License (MIT) Copyright (c) 2017-2021 Kirill Ch. <g4s8.public@gmail.com>
  * https://github.com/g4s8/mime/LICENSE.txt
  */
-package com.g4s8.mime.test;
+package wtf.g4s8.mime.test;
 
-import com.g4s8.mime.MimeType;
+import wtf.g4s8.mime.MimeType;
 import java.io.IOException;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Description;

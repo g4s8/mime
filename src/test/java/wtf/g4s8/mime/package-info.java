@@ -4,8 +4,8 @@
  */
 
 /**
- * Media type Hamcrest matchers.
+ * Media type tests.
  *
  * @since 0.1
  */
-package com.g4s8.mime.test;
+package wtf.g4s8.mime;

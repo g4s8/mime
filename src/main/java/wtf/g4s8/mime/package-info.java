@@ -14,4 +14,4 @@
  *
  * @since 0.1
  */
-package com.g4s8.mime;
+package wtf.g4s8.mime;

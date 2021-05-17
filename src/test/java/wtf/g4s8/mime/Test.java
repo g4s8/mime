@@ -3,7 +3,7 @@
  * https://github.com/g4s8/mime/LICENSE.txt
  */
 
-package com.g4s8.mime;
+package wtf.g4s8.mime;
 
 import wtf.g4s8.oot.ConsoleReport;
 import wtf.g4s8.oot.FailingReport;
