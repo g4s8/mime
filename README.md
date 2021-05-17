@@ -1,38 +1,22 @@
-# Mime - Media types (MIME types) RFC6838
+[Mime](https://github.com/g4s8/mime) is an object-oriented java library without dependencies for parsing and creating
+HTTP media-types according to [RFC6838](https://tools.ietf.org/html/rfc6838) specifications.
 
-[![DevOps By Rultor.com](http://www.rultor.com/b/g4s8/mime)](http://www.rultor.com/p/g4s8/mime)
-
- [![Bintray](https://api.bintray.com/packages/g4s8/maven-android/com.g4s8.mime/images/download.svg)](https://bintray.com/g4s8/maven-android/com.g4s8.mime/_latestVersion)
-
-[![Build Status](https://img.shields.io/travis/g4s8/mime.svg?style=flat-square)](https://travis-ci.org/g4s8/mime)
-[![Build status](https://ci.appveyor.com/api/projects/status/9mk57am5d3r70geo?svg=true)](https://ci.appveyor.com/project/g4s8/mime)
-[![PDD status](http://www.0pdd.com/svg?name=g4s8/mime)](http://www.0pdd.com/p?name=g4s8/mime)
+[![CI checks](https://github.com/g4s8/mime/actions/workflows/ci-checks.yml/badge.svg)](https://github.com/g4s8/mime/actions/workflows/ci-checks.yml)
 [![License](https://img.shields.io/github/license/g4s8/mime.svg?style=flat-square)](https://github.com/g4s8/mime/blob/master/LICENSE.txt)
 [![Test Coverage](https://img.shields.io/codecov/c/github/g4s8/mime.svg?style=flat-square)](https://codecov.io/github/g4s8/mime?branch=master)
 
-## About
-[Mime](https://github.com/g4s8/mime) - object-oriented java library without dependencies for parsing and creating
-HTTP media-types according to [RFC6838](https://tools.ietf.org/html/rfc6838) specifications.
-
 ## Usage
-For better understanding it's recommended to see [unit-tests](https://github.com/g4s8/mime/blob/master/src/test/java/com/g4s8/mime/).
 
-### Parsing from string
+MIME type has mandatory type and subtype, e.g. `application/json` has `application` type
+and `json` subtype. Some MIME types has additional parameters, e.g. `text/plain; encoding=utf-8` has
+`charset` param with `utf-8` value.
+
+For all these entities there are related method exist. To construct MIME parser use `new MimeTypeOf` constructor:
 ```java
-final MimeType mime = new MimeTypeOf("text/html");
-System.out.printf("type: '%s', subtype: '%s'", mime.type(), mime.subtype());
-// type: 'text', subtype: 'html'
-```
-### Common params
-The most common params, such as charset, boundary etc. can be accessed through `MimeTypeSmart` object:
-```java
-System.out.printf(
-    "encoding: '%s'",
-    new MimeTypeSmart(
-        new MimeTypeOf("plain/text; charset=utf-8")
-    ).charset()
-);
-// encoding: 'utf-8'
+var mime = new MimeTypeOf("text/xml; encoding=utf-8");
+var type = mime.type(); // "text"
+var subtype = mime.subtype(); // "xml"
+var encoding = mime.param("encoding"); // "utf-8"
 ```
 
 ## Testing
@@ -59,3 +43,7 @@ MatcherAssert.assertThat(
 
 ## Contributing
 If you are interested in contributing please refer to [CONTRIBUTING.md](CONTRIBUTING.md)
+
+Maintaining:
+
+[![PDD status](http://www.0pdd.com/svg?name=g4s8/mime)](http://www.0pdd.com/p?name=g4s8/mime)
