@@ -30,30 +30,38 @@ public final class MimeTypeOfTest extends TestCase.Wrap {
                 Arrays.<TestCase>asList(
                     new SimpleTest<>(
                         "Parse type",
-                        new MimeTypeOf("application/pdf"),
+                        new MimeTypeOfString("application/pdf"),
                         new HmMimeHasType("application")
                     ),
                     new SimpleTest<>(
                         "Parse subtype",
-                        new MimeTypeOf("image/bmp"),
+                        new MimeTypeOfString("image/bmp"),
                         new HmMimeHasSubType("bmp")
                     ),
                     new SimpleTest<>(
                         "Parse boundary param",
-                        new MimeTypeOf("multipart/byteranges; boundary=3d6b6a416f9b5"),
+                        new MimeTypeOfString("multipart/byteranges; boundary=3d6b6a416f9b5"),
                         new HmMimeHasParam("boundary", "3d6b6a416f9b5")
                     ),
                     new SimpleTest<>(
-                        "Parse encoding param",
-                        new MimeTypeOf("text/xml; encoding=utf-8"),
+                        "Parse param ignore case",
+                        new MimeTypeOfString("text/xml; EncOdinG=utf-8"),
                         new HmMimeHasParam(
                             "encoding",
-                            Matchers.equalToIgnoringCase("UtF-8")
+                            Matchers.equalTo("utf-8")
+                        )
+                    ),
+                    new SimpleTest<>(
+                        "Parse multiple params",
+                        new MimeTypeOfString("test/test;  FoO=1 bAr=Two "),
+                        Matchers.allOf(
+                            new HmMimeHasParam("foo", "1"),
+                            new HmMimeHasParam("bar", "two")
                         )
                     ),
                     new SimpleTest<>(
                         "Convert toString",
-                        new MimeTypeOf("text/plain"),
+                        new MimeTypeOfString("text/plain"),
                         Matchers.hasToString(String.join("/", "text", "plain"))
                     )
                 )

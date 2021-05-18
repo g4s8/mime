@@ -4,34 +4,91 @@
  */
 package wtf.g4s8.mime;
 
-import java.io.IOException;
-import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Media type (or MIME type).
  *
- * @since 0.1
+ * @since 2.0
  */
 public interface MimeType {
 
     /**
      * Type name.
-     * @return Type name string
-     * @throws IOException If failed to read
+     * @return Name string
      */
-    String type() throws IOException;
+    String type();
 
     /**
      * Subtype name.
-     * @return Subtype name string
-     * @throws IOException If failed to read
+     * @return Subtype string
      */
-    String subtype() throws IOException;
+    String subtype();
 
     /**
-     * Optional parameters.
-     * @return Parameter map
-     * @throws IOException If failed to read
+     * Optional parameters names.
+     * @return unordered case-insentetive set of strings
      */
-    Map<String, String> params() throws IOException;
+    Set<String> params();
+
+    /**
+     * Parameter value for name.
+     * @param name Parameter name, case-insentetive
+     * @return Optional parameter value if present for the name
+     */
+    Optional<String> param(String name);
+
+    /**
+     * Mime type of string source.
+     * @return Mime type implementation for string provided
+     */
+    static MimeType of(final CharSequence src) {
+        return new MimeTypeOfString(src);
+    }
+
+    /**
+     * Default decorator for mime type.
+     * @since 2.0
+     */
+    abstract class Wrap implements MimeType {
+
+        /**
+         * Delegate.
+         */
+        private final MimeType origin;
+
+        /**
+         * Wraps origin.
+         * @param origin Delegate
+         */
+        protected Wrap(final MimeType origin) {
+            this.origin = origin;
+        }
+
+        @Override
+        public final String type() {
+            return this.origin.type();
+        }
+
+        @Override
+        public String subtype() {
+            return this.origin.subtype();
+        }
+
+        @Override
+        public Set<String> params() {
+            return this.origin.params();
+        }
+
+        @Override
+        public Optional<String> param(final String name) {
+            return this.origin.param(name);
+        }
+
+        @Override
+        public String toString() {
+            return this.origin.toString();
+        }
+    }
 }
