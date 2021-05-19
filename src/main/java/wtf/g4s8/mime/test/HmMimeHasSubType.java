@@ -5,7 +5,6 @@
 package wtf.g4s8.mime.test;
 
 import wtf.g4s8.mime.MimeType;
-import java.io.IOException;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
@@ -32,14 +31,7 @@ public final class HmMimeHasSubType extends TypeSafeMatcher<MimeType> {
 
     @Override
     public boolean matchesSafely(final MimeType type) {
-        try {
-            return this.expected.equals(type.subtype());
-        } catch (final IOException err) {
-            throw new UnsupportedOperationException(
-                "Matcher failed due to error",
-                err
-            );
-        }
+        return this.expected.equals(type.subtype());
     }
 
     @Override

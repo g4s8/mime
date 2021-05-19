@@ -22,7 +22,7 @@ public final class Test extends TestCase.Wrap {
      */
     private Test() {
         super(
-            new SequentialTests(new MimeTypeOfTest(), new MimeTypeSmartTest())
+            new SequentialTests(new MimeTypeOfTest())
         );
     }
 

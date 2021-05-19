@@ -5,7 +5,7 @@
 package wtf.g4s8.mime.test;
 
 import wtf.g4s8.mime.MimeType;
-import java.io.IOException;
+import java.util.Optional;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -51,23 +51,14 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
 
     @Override
     public boolean matchesSafely(final MimeType type) {
-        try {
-            final String actual = type.params().get(this.name);
-            return this.expected.matches(actual);
-        } catch (final IOException err) {
-            throw new UnsupportedOperationException(
-                "Matcher failed due to error",
-                err
-            );
-        }
+        return type.param(name).map(this.expected::matches).orElse(false);
     }
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("MIME with param ")
-            .appendDescriptionOf(
-                new ParamDescription(this.name, this.expected)
-            );
+        description.appendText("MIME with param ").appendDescriptionOf(
+            new ParamDescription(this.name, this.expected)
+        );
     }
 
     @Override
@@ -75,16 +66,12 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
         final MimeType item,
         final Description desc
     ) {
-        try {
+        final Optional<String> opt = item.param(name);
+        if (opt.isPresent()) {
             desc.appendText("was param ")
-                .appendDescriptionOf(
-                    new ParamDescription(
-                        this.name,
-                        item.params().get(this.name)
-                    )
-                );
-        } catch (final IOException err) {
-            desc.appendText("was not set");
+                .appendDescriptionOf(new ParamDescription(this.name, opt.get()));
+        } else {
+            desc.appendText("no param `").appendValue(name).appendText("`");
         }
     }
 
