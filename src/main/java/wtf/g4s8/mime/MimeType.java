@@ -4,8 +4,11 @@
  */
 package wtf.g4s8.mime;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Media type (or MIME type).
@@ -45,6 +48,29 @@ public interface MimeType {
      */
     static MimeType of(final CharSequence src) {
         return new MimeTypeOfString(src);
+    }
+
+    /**
+     * Parse mime-type string containing multiple media types with qualifiers.
+     * <p>
+     * Multiple media types could be used in {@code Accept} headers.
+     * Mime types are ordered first by qualifier param {@code q} value, then by order
+     * of appearance in source string.
+     * </p>
+     * @param src Source string
+     * @return Ordered collection of mime types
+     * @since 2.1
+     */
+    static Collection<MimeType> parse(final CharSequence src) {
+        return Arrays.stream(src.toString().split(","))
+            .map(String::trim)
+            .map(MimeTypeOfString::new)
+            .sorted(
+                (left, right) -> Float.compare(
+                    right.param("q").map(Float::parseFloat).orElse(0F),
+                    left.param("q").map(Float::parseFloat).orElse(0F)
+                )
+            ).collect(Collectors.toList());
     }
 
     /**
