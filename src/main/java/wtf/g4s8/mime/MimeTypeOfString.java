@@ -46,7 +46,6 @@ final class MimeTypeOfString implements MimeType {
         );
     }
 
-
     /**
      * Source string.
      */

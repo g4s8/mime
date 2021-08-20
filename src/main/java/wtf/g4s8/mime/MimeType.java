@@ -6,8 +6,11 @@ package wtf.g4s8.mime;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -62,15 +65,30 @@ public interface MimeType {
      * @since 2.1
      */
     static Collection<MimeType> parse(final CharSequence src) {
+        final Predicate<? super MimeType> pred = new Predicate<MimeType>(){
+            final Set<String> types = new HashSet<>();
+
+            @Override
+            public boolean test(MimeType type) {
+                final String key = String.format("%s/%s", type.type(), type.subtype());
+                final boolean check;
+                if (types.contains(key)) {
+                    check = false;
+                } else {
+                    types.add(key);
+                    check = true;
+                }
+                return check;
+            }
+        };
         return Arrays.stream(src.toString().split(","))
             .map(String::trim)
             .map(MimeTypeOfString::new)
             .sorted(
-                (left, right) -> Float.compare(
-                    right.param("q").map(Float::parseFloat).orElse(0F),
-                    left.param("q").map(Float::parseFloat).orElse(0F)
-                )
-            ).collect(Collectors.toList());
+                MimeTypeComparators.BY_QUALIFIER
+                    .thenComparing(MimeTypeComparators.BY_TYPE)
+                    .thenComparing(MimeTypeComparators.BY_SUBTYPE)
+            ).filter(pred).collect(Collectors.toList());
     }
 
     /**
