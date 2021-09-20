@@ -1,3 +1,7 @@
+## v2.2.1
+
+ - release: added two profiles for 8 and 17 versions (#32)
+
 ## v2.2
 
  - fix: fixed order and ignore duplicates on parse (#28)
