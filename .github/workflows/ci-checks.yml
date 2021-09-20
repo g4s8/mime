@@ -28,4 +28,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}_jdk-${{ matrix.jdk }}-${{ matrix.java }}_maven-
       - name: Verify
-        run: mvn -B verify
+        run: mvn -B verify -Pjava8
