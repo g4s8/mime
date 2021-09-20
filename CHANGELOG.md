@@ -1,6 +1,7 @@
 ## v2.2.1
 
  - release: added two profiles for 8 and 17 versions (#32)
+ - fix: updated javadoc plugin
 
 ## v2.2
 
