@@ -59,6 +59,8 @@ jobs:
       - name: Set version
         run: mvn -B versions:set -DnewVersion=${{ env.TAG }}+${{ matrix.target }} versions:commit
       - name: Deploy artifacts
+        env:
+          JDK_JAVA_OPTIONS: --illegal-access=warn
         run: mvn clean deploy -B -Ppublish,sonatype,gpg-sign -P${{ matrix.target }} --errors
       - name: Create Github Release
         id: create_release
