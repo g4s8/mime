@@ -13,7 +13,7 @@ and `json` subtype. Some MIME types has additional parameters, e.g. `text/plain;
 
 For all these entities there are related method exist. To construct MIME parser use `new MimeTypeOf` constructor:
 ```java
-var mime = new MimeType.of("text/xml; encoding=utf-8");
+var mime = MimeType.of("text/xml; encoding=utf-8");
 var type = mime.type(); // "text"
 var subtype = mime.subtype(); // "xml"
 var encoding = mime.param("encoding"); // "utf-8"
@@ -27,19 +27,19 @@ and sort mime types according to this qualifier.
 ```java
 // verify type
 MatcherAssert.assertThat(
-    new MimeType.of("application/pdf"),
+    MimeType.of("application/pdf"),
     new HmMimeHasType("application")
 );
 
 // verify subtype
 MatcherAssert.assertThat(
-    new MimeType.of("image/bmp"),
+    MimeType.of("image/bmp"),
     new HmMimeHasSubType("bmp")
 );
 
 // verify parameter
 MatcherAssert.assertThat(
-    new MimeType.of("image/bmp; charset=utf-8"),
+    MimeType.of("image/bmp; charset=utf-8"),
     new HmMimeHasParameter("charset", "utf-8")
 );
 ```
