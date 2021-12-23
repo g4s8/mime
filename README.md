@@ -13,30 +13,33 @@ and `json` subtype. Some MIME types has additional parameters, e.g. `text/plain;
 
 For all these entities there are related method exist. To construct MIME parser use `new MimeTypeOf` constructor:
 ```java
-var mime = new MimeTypeOf("text/xml; encoding=utf-8");
+var mime = new MimeType.of("text/xml; encoding=utf-8");
 var type = mime.type(); // "text"
 var subtype = mime.subtype(); // "xml"
 var encoding = mime.param("encoding"); // "utf-8"
 ```
+
+To parse multi mime type strings like `Accept` headers, use `MimType.parse(String)` method, it pays attention to qualifier
+and sort mime types according to this qualifier.
 
 ## Testing
 [Hamcrest](http://hamcrest.org/JavaHamcrest/) matchers are included in `test` package. Them can be used to verify mime-types:
 ```java
 // verify type
 MatcherAssert.assertThat(
-    new MimeTypeOf("application/pdf"),
+    new MimeType.of("application/pdf"),
     new HmMimeHasType("application")
 );
 
 // verify subtype
 MatcherAssert.assertThat(
-    new MimeTypeOf("image/bmp"),
+    new MimeType.of("image/bmp"),
     new HmMimeHasSubType("bmp")
 );
 
 // verify parameter
 MatcherAssert.assertThat(
-    new MimeTypeOf("image/bmp; charset=utf-8"),
+    new MimeType.of("image/bmp; charset=utf-8"),
     new HmMimeHasParameter("charset", "utf-8")
 );
 ```
