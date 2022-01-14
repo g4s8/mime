@@ -8,20 +8,15 @@ jobs:
     name: Build release
     strategy:
       matrix:
-        target: [java8, java17]
+        target: java8
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.3
-      - name: Download JDK
-        run: |
-          curl --silent -o ${{ runner.temp }}/jdk-17_linux-x64_bin.tar.gz \
-            https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: jdkfile
-          jdkFile: ${{ runner.temp }}/jdk-17_linux-x64_bin.tar.gz
-          java-version: 17
+          distribution: adopt
+          java-version: 8
       - uses: actions/cache@v2
         with:
           path: ~/.m2/repository
