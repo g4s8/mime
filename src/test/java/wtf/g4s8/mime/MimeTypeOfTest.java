@@ -56,13 +56,28 @@ public final class MimeTypeOfTest extends TestCase.Wrap {
                         new MimeTypeOfString("test/test;  FoO=1 bAr=Two "),
                         Matchers.allOf(
                             new HmMimeHasParam("foo", "1"),
-                            new HmMimeHasParam("bar", "two")
+                            new HmMimeHasParam("bar", "Two")
                         )
                     ),
                     new SimpleTest<>(
                         "Convert toString",
                         new MimeTypeOfString("text/plain"),
                         Matchers.hasToString(String.join("/", "text", "plain"))
+                    ),
+                    new SimpleTest<>(
+                        "Read param ignore case",
+                        new MimeTypeOfString("test/plan; FOO=bar"),
+                        new HmMimeHasParam("Foo", "bar")
+                    ),
+                    new SimpleTest<>(
+                        "Parse with whitespaces",
+                        new MimeTypeOfString("multipart/form-data; charset=ISO-8859-1; boundary=bNeQZuZ5pNrHBg7REi9oH8LEOhtqW83GcR_"),
+                        Matchers.allOf(
+                            new HmMimeHasType("multipart"),
+                            new HmMimeHasSubType("form-data"),
+                            new HmMimeHasParam("charset", "ISO-8859-1"),
+                            new HmMimeHasParam("boundary", "bNeQZuZ5pNrHBg7REi9oH8LEOhtqW83GcR_")
+                        )
                     )
                 )
             )

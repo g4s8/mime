@@ -39,7 +39,7 @@ final class MimeTypeOfString implements MimeType {
         );
         PTN_PARAM = Pattern.compile(
             String.format(
-                "\\s*(?:%s=(?:%s|\"([^\"]*)\"))?",
+                "\\s*(?:%s=(?:%s|\"([^\"]*)\")[;]?)?",
                 token,
                 token
             )
@@ -81,7 +81,7 @@ final class MimeTypeOfString implements MimeType {
 
     @Override
     public Optional<String> param(final String name) {
-        return Optional.ofNullable(this.paramsMap().get(name));
+        return Optional.ofNullable(this.paramsMap().get(name.toLowerCase(Locale.US)));
     }
 
     @Override
@@ -175,6 +175,6 @@ final class MimeTypeOfString implements MimeType {
         if (value == null) {
             throw new IllegalStateException("Bad parameter value");
         }
-        return value.toLowerCase(Locale.US);
+        return value;
     }
 }
