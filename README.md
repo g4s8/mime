@@ -11,9 +11,9 @@ MIME type has mandatory type and subtype, e.g. `application/json` has `applicati
 and `json` subtype. Some MIME types has additional parameters, e.g. `text/plain; encoding=utf-8` has
 `charset` param with `utf-8` value.
 
-For all these entities there are related method exist. To construct MIME parser use `new MimeTypeOf` constructor:
+For all these entities there are related method exist. To construct MIME parser use `new MimeTypeOfString` constructor:
 ```java
-var mime = MimeType.of("text/xml; encoding=utf-8");
+var mime = new MimeTypeOfString("text/xml; encoding=utf-8");
 var type = mime.type(); // "text"
 var subtype = mime.subtype(); // "xml"
 var encoding = mime.param("encoding"); // "utf-8"
