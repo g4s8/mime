@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * Standard MIME types.
+ *
  * @since 2.2
  */
 public enum StandardTypes implements MimeType {
@@ -28,6 +29,7 @@ public enum StandardTypes implements MimeType {
 
     /**
      * Private enum constructor.
+     *
      * @param type MIME type
      * @param subtype MIME subtype
      */

@@ -81,6 +81,38 @@
         </executions>
       </plugin>
       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.1.2</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>10.0</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <configLocation>${project.basedir}/checkstyle.xml</configLocation>
+              <includeResources>true</includeResources>
+              <includeTestResources>true</includeTestResources>
+              <includeTestSourceDirectory>true</includeTestSourceDirectory>
+              <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
+              <testSourceDirectories>${project.build.testSourceDirectory}</testSourceDirectories>
+              <outputFile>${project.build.directory}/reports/checkstyle/checkstyle-result.xml</outputFile>
+              <consoleOutput>true</consoleOutput>
+              <failsOnError>true</failsOnError>
+              <linkXRef>true</linkXRef>
+              <violationSeverity>warning</violationSeverity>
+          </configuration>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>check</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.7</version>

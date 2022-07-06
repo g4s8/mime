@@ -2,6 +2,7 @@
  * The MIT License (MIT) Copyright (c) 2017-2021 Kirill Ch. <g4s8.public@gmail.com>
  * https://github.com/g4s8/mime/LICENSE.txt
  */
+
 package wtf.g4s8.mime;
 
 import java.util.stream.Collectors;
@@ -23,6 +24,7 @@ final class MimeTypeParseTest extends TestCase.Wrap {
 
     MimeTypeParseTest() {
         super(
+            //CHECKSTYLE:OFF
             new SequentialTests(
                 new SimpleTest<>(
                     "parse multiple types",
@@ -37,7 +39,7 @@ final class MimeTypeParseTest extends TestCase.Wrap {
                 new SimpleTest<>(
                     "parse and sort repeated",
                     MimeType.parse(
-                        "text/html;q=0.6, application/xml;q=0.9, image/bmp;q=0.3,image/bmp;q=0.5, text/html, multipart/mixed, text/json;q=0.4"
+                        /*longline*/"text/html;q=0.6, application/xml;q=0.9, image/bmp;q=0.3,image/bmp;q=0.5, text/html, multipart/mixed, text/json;q=0.4"
                     ),
                     matchers(
                         "multipart/mixed", "text/html", "application/xml", "image/bmp", "text/json"
@@ -46,7 +48,7 @@ final class MimeTypeParseTest extends TestCase.Wrap {
                 new SimpleTest<>(
                     "parse docker client header",
                     MimeType.parse(
-                        "application/vnd.oci.image.manifest.v1+json,application/vnd.docker.distribution.manifest.v2+json,application/vnd.docker.distribution.manifest.v1+json,application/vnd.docker.distribution.manifest.list.v2+json"
+                        /*longline*/"application/vnd.oci.image.manifest.v1+json,application/vnd.docker.distribution.manifest.v2+json,application/vnd.docker.distribution.manifest.v1+json,application/vnd.docker.distribution.manifest.list.v2+json"
                     ),
                     matchers(
                         "application/vnd.docker.distribution.manifest.list.v2+json",
@@ -56,12 +58,14 @@ final class MimeTypeParseTest extends TestCase.Wrap {
                     )
                 )
             )
+        //CHECKSTYLE:ON
         );
     }
 
     /**
      * Short method for matcher.
-     * @oaram expect Expected mime types
+     *
+     * @param expect Expected mime types
      * @return Matcher
      */
     private static Matcher<Iterable<? extends MimeType>> matchers(final String... expect) {

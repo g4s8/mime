@@ -22,24 +22,28 @@ public interface MimeType {
 
     /**
      * Type name.
+     *
      * @return Name string
      */
     String type();
 
     /**
      * Subtype name.
+     *
      * @return Subtype string
      */
     String subtype();
 
     /**
      * Optional parameters names.
+     *
      * @return unordered case-insentetive set of strings
      */
     Set<String> params();
 
     /**
      * Parameter value for name.
+     *
      * @param name Parameter name, case-insentetive
      * @return Optional parameter value if present for the name
      */
@@ -47,6 +51,7 @@ public interface MimeType {
 
     /**
      * Mime type of string source.
+     *
      * @return Mime type implementation for string provided
      */
     static MimeType of(final CharSequence src) {
@@ -60,12 +65,13 @@ public interface MimeType {
      * Mime types are ordered first by qualifier param {@code q} value, then by order
      * of appearance in source string.
      * </p>
+     *
      * @param src Source string
      * @return Ordered collection of mime types
      * @since 2.1
      */
     static Collection<MimeType> parse(final CharSequence src) {
-        final Predicate<? super MimeType> pred = new Predicate<MimeType>(){
+        final Predicate<? super MimeType> pred = new Predicate<MimeType>() {
             final Set<String> types = new HashSet<>();
 
             @Override
@@ -93,6 +99,7 @@ public interface MimeType {
 
     /**
      * Default decorator for mime type.
+     *
      * @since 2.0
      */
     abstract class Wrap implements MimeType {
@@ -104,6 +111,7 @@ public interface MimeType {
 
         /**
          * Wraps origin.
+         *
          * @param origin Delegate
          */
         protected Wrap(final MimeType origin) {

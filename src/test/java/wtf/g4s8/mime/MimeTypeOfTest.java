@@ -71,7 +71,9 @@ public final class MimeTypeOfTest extends TestCase.Wrap {
                     ),
                     new SimpleTest<>(
                         "Parse with whitespaces",
-                        new MimeTypeOfString("multipart/form-data; charset=ISO-8859-1; boundary=bNeQZuZ5pNrHBg7REi9oH8LEOhtqW83GcR_"),
+                        new MimeTypeOfString(
+                            /*longline*/"multipart/form-data; charset=ISO-8859-1; boundary=bNeQZuZ5pNrHBg7REi9oH8LEOhtqW83GcR_"
+                        ),
                         Matchers.allOf(
                             new HmMimeHasType("multipart"),
                             new HmMimeHasSubType("form-data"),

@@ -4,13 +4,13 @@
  */
 package wtf.g4s8.mime.test;
 
-import wtf.g4s8.mime.MimeType;
 import java.util.Optional;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.TypeSafeMatcher;
+import wtf.g4s8.mime.MimeType;
 
 /**
  * MIME param matcher.
@@ -31,6 +31,7 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
 
     /**
      * Ctor.
+     *
      * @param name The name of the parameter to be matched.
      * @param expected The actual value that should be in this parameter.
      */
@@ -40,6 +41,7 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
 
     /**
      * Ctor.
+     *
      * @param name The name of the parameter to be matched.
      * @param expected A matcher that can be used to check the param.
      */
@@ -79,10 +81,12 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
      * Description of a parameter, either the expected one or the actual one.
      */
     private static class ParamDescription implements SelfDescribing {
+
         /**
          * The name of the parameter.
          */
         private final String name;
+
         /**
          * The value of the parameter.
          */
@@ -90,6 +94,7 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
 
         /**
          * Ctor.
+         *
          * @param name The parameter name.
          * @param value The parameter value.
          */
@@ -100,6 +105,7 @@ public final class HmMimeHasParam extends TypeSafeMatcher<MimeType> {
 
         /**
          * Ctor.
+         *
          * @param name The parameter name.
          * @param expected A matcher that was used for the expected value.
          */

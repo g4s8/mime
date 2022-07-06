@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * MIME type from string.
+ * MIME type of string.
  *
  * @since 2.0
  */
@@ -57,7 +57,8 @@ final class MimeTypeOfString implements MimeType {
     private volatile Map<String, String> parmap;
 
     /**
-     * Ctor.
+     * New MIME type of string.
+     *
      * @param source Source string
      */
     public MimeTypeOfString(final CharSequence src) {
@@ -105,6 +106,7 @@ final class MimeTypeOfString implements MimeType {
 
     /**
      * Type and subtype matcher.
+     *
      * @return Pattern matcher
      */
     private Matcher typeMatcher() {
@@ -117,6 +119,7 @@ final class MimeTypeOfString implements MimeType {
 
     /**
      * Parameter name to value map.
+     *
      * @return Map of parameters values by names
      */
     private Map<String, String> paramsMap() {
@@ -154,9 +157,9 @@ final class MimeTypeOfString implements MimeType {
 
     /**
      * Read parameter value from matcher.
+     *
      * @param matcher Pattern matcher
      * @return Value
-     * @checkstyle MagicNumberCheck (30 lines)
      */
     private static String paramValue(final Matcher matcher) {
         final String token = matcher.group(2);

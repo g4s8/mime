@@ -25,6 +25,7 @@ public final class MimeTypeSimple implements MimeType {
 
     /**
      * New simple MIME-type.
+     *
      * @param type Type
      * @param subtype Subtype
      */
