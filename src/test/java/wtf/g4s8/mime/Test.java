@@ -12,8 +12,8 @@ import wtf.g4s8.oot.TestCase;
 
 /**
  * Test main.
+ *
  * @since 1.0
- * @checkstyle JavadocMethodCheck (500 lines)
  */
 public final class Test extends TestCase.Wrap {
 
@@ -29,6 +29,9 @@ public final class Test extends TestCase.Wrap {
         );
     }
 
+    /**
+     * Test entry point.
+     */
     public static void test() throws Exception {
         try (FailingReport report = new FailingReport(new ConsoleReport())) {
             new Test().run(report);

@@ -4,9 +4,9 @@
  */
 package wtf.g4s8.mime.test;
 
-import wtf.g4s8.mime.MimeType;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
+import wtf.g4s8.mime.MimeType;
 
 /**
  * MIME type matcher.
@@ -21,7 +21,8 @@ public final class HmMimeHasType extends TypeSafeMatcher<MimeType> {
     private final String expected;
 
     /**
-     * Ctor.
+     * New MIME type matcher.
+     *
      * @param expected Expected type
      */
     public HmMimeHasType(final String expected) {

@@ -8,15 +8,14 @@ import java.util.Comparator;
 
 /**
  * MIME types comparators.
+ *
  * @since 2.2
  */
 public enum MimeTypeComparators implements Comparator<MimeType> {
-    BY_QUALIFIER(
-        (left, right) -> Float.compare(
-            right.param("q").map(Float::parseFloat).orElse(1F),
-            left.param("q").map(Float::parseFloat).orElse(1F)
-        )
-    ),
+    BY_QUALIFIER((left, right) -> Float.compare(
+        right.param("q").map(Float::parseFloat).orElse(1F),
+        left.param("q").map(Float::parseFloat).orElse(1F)
+    )),
     BY_TYPE((left, right) -> compareTypes(left.type(), right.type())),
     BY_SUBTYPE((left, right) -> compareTypes(left.subtype(), right.subtype()));
 
@@ -27,7 +26,8 @@ public enum MimeTypeComparators implements Comparator<MimeType> {
 
     /**
      * Private enum constructor.
-     * @param origin
+     *
+     * @param origin Comparator
      */
     private MimeTypeComparators(final Comparator<? super MimeType> origin) {
         this.origin = origin;
@@ -40,6 +40,7 @@ public enum MimeTypeComparators implements Comparator<MimeType> {
 
     /**
      * Parse MIME types, pay attetion to wildcards.
+     *
      * @param left Left type
      * @param right Right type
      * @return Compare result
