@@ -112,13 +112,6 @@
               <linkXRef>true</linkXRef>
               <violationSeverity>warning</violationSeverity>
           </configuration>
-          <executions>
-              <execution>
-                  <goals>
-                      <goal>check</goal>
-                  </goals>
-              </execution>
-          </executions>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
