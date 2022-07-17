@@ -27,5 +27,8 @@ jobs:
           key: ${{ runner.os }}_jdk-${{ matrix.jdk }}-${{ matrix.java }}_maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}_jdk-${{ matrix.jdk }}-${{ matrix.java }}_maven-
+      - name: Build
+        run: mvn -B package
       - name: Verify
+        if: ${{ matrix.java }} > 9
         run: mvn -B verify -Pjava8
