@@ -1,6 +1,7 @@
 MIME is a java library without dependencies for parsing and creating
 HTTP media-type objects, according to [RFC6838](https://tools.ietf.org/html/rfc6838) specifications.
 
+[![Maven Central](https://img.shields.io/maven-central/v/wtf.g4s8/mime)](https://mvnrepository.com/artifact/wtf.g4s8/mime)
 [![CI checks](https://github.com/g4s8/mime/actions/workflows/ci-checks.yml/badge.svg)](https://github.com/g4s8/mime/actions/workflows/ci-checks.yml)
 [![License](https://img.shields.io/github/license/g4s8/mime.svg?style=flat-square)](https://github.com/g4s8/mime/blob/master/LICENSE.txt)
 [![Test Coverage](https://img.shields.io/codecov/c/github/g4s8/mime.svg?style=flat-square)](https://codecov.io/github/g4s8/mime?branch=master)
